@@ -1,1 +1,8 @@
 @import 'node_modules/bulma/bulma.sass';
+
+.column {
+    max-width: 420px;
+    & * {
+    word-break: break-all
+    }
+}
