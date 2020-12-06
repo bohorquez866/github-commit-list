@@ -23,7 +23,7 @@
 
               <h3 class="has-text-weight-semibold">
                 Comment:
-                <em v-if="commit.commit.message < 1">{{commit.commit.message}}</em>
+                <em v-if="commit.commit.message.length > 0">{{commit.commit.message}}</em>
               </h3>
               <p>
                 <strong>Date:</strong>

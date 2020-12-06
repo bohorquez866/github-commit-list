@@ -1,24 +1,6 @@
-# github-commit
+# Commit renderer
 
-## Project setup
-```
-npm install
-```
+## used technologies
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+#### Bulma for styles, Vue 3 for Frontend and API and Postman for the API FETCH 
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
