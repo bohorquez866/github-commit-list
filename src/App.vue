@@ -1,5 +1,4 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
   <home msg="Jesus Commit History" />
 </template>
 
@@ -9,8 +8,8 @@ import home from "./components/home.vue";
 export default {
   name: "App",
   components: {
-    home,
-  },
+    home
+  }
 };
 </script>
 
