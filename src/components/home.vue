@@ -7,13 +7,24 @@
         <div class>
           <h2>{{}}</h2>
           <ul class="cards columns is is-multiline mt-6">
-            <li class="card column is-half mb-3" v-for="commit in commits" :key="commit.items">
+            <li class="card column is-half mb-3" v-for="commit in commits" :key="commit">
+              <h2 class="has-text-weight-bold">
+                Author
+                <strong class="has-text-link">{{commit.author.login}}</strong>
+              </h2>
               <h3 class="has-text-weight-bold">
-                Owner:
-                <strong class="has-text-link">{{commit}}</strong>
+                <span>Sha:</span>
+                <strong class="has-text-link">{{commit.sha}}</strong>
               </h3>
-              <p>sha: {{commit.id}}</p>
-              <p>comment: {{commit.description}}</p>
+
+              <h3 class="has-text-weight-semibold">
+                Comment:
+                <em>{{commit.commit.message}}</em>
+              </h3>
+              <p>
+                <strong>Date:</strong>
+                {{commit.commit.author.date}}
+              </p>
             </li>
           </ul>
         </div>
@@ -31,12 +42,13 @@ export default {
 
   data: function() {
     return {
-      url: `https://api.github.com/search/commits?q=repo:bohorquez866/github-commit-list author-date:2020-01-01..2020-12-07`,
+      url: `https://api.github.com/search/commits?q=repo:bohorquez866/github-commit-list author-date:1973-01-01..2021-12-07`,
       commits: {},
       res: [],
       index: 0
     };
   },
+
   methods: {
     request() {
       return fetch(this.url, {
@@ -44,17 +56,17 @@ export default {
         headers: {
           Accept: "application/vnd.github.cloak-preview"
         }
-        //        Authorization: `d5a9b2b60eb551ad9313360efdf6018406c8e15a`
       })
         .then(response => response.json())
         .then(repos => {
           this.repos = repos;
-          console.log(repos);
-          this.commits = repos;
+          this.commits = repos.items;
+          console.log(this.commits);
         })
         .catch(err => console.warn(err));
     }
   },
+
   beforeMount() {
     this.request();
   }
