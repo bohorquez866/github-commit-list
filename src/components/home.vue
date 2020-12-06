@@ -6,6 +6,7 @@
       <div class="container">
         <div class="columns">
           <input type="text" class="input" v-model="commit" placeholder="enter your parameter" />
+          <h2>{{}}</h2>
           <ul class="card">
             <li v-for="rep in reps" :key="rep.message">{{rep}}</li>
           </ul>
@@ -16,28 +17,34 @@
 </template>
 
 <script>
+function apiReq() {
+  return fetch(
+    `https://api.github.com/repos/bohorquez866/githhub-commit-list/commits/`
+  ).then(response => response.json());
+}
+
 export default {
-  name: "HelloWorld",
+  name: "home",
   props: {
-    msg: String,
+    msg: String
   },
 
-  data: function () {
+  data: function() {
     return {
       commit: "",
-      reps: [],
+      reps: []
     };
   },
 
   watch: {
-    commit: function (val, oldVal) {
+    commit: function(val, oldVal) {
       this.commit = val;
+      apiReq(this.commit).then(console.log());
       console.log(oldVal);
-    },
-  },
+    }
+  }
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 </style>
